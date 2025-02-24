@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Posición</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            font-size: 24px;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        #resultado {
+            font-size: 32px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Posición</h1>
+        <label for="elementos">Número de Elementos:</label>
+        <input type="number" id="elementos" placeholder="Ejemplo: 100">
+        <label for="posicion">Posición Deseada:</label>
+        <input type="number" id="posicion" placeholder="Ejemplo: 18">
+        <button onclick="calcularPosicion()">Calcular</button>
+        <button onclick="restablecer()">Restablecer</button>
+        <div id="resultado"></div>
+    </div>
+    
+    <script>
+        function calcularPosicion() {
+            let elementos = parseInt(document.getElementById('elementos').value);
+            let posicion = parseInt(document.getElementById('posicion').value);
+            
+            if (isNaN(elementos) || isNaN(posicion) || elementos <= 0 || posicion <= 0) {
+                document.getElementById('resultado').innerText = "Ingrese valores válidos.";
+                return;
+            }
+            
+            let resultado = `La posición ${posicion} dentro de ${elementos} elementos corresponde a la ${(posicion % elementos) || elementos}.`;
+            document.getElementById('resultado').innerText = resultado;
+        }
+        
+        function restablecer() {
+            document.getElementById('elementos').value = "";
+            document.getElementById('posicion').value = "";
+            document.getElementById('resultado').innerText = "";
+        }
+    </script>
+</body>
+</html>
